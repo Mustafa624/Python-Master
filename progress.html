@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع التقدم - Python Master</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fab fa-python"></i>
+                <a href="index.html" style="text-decoration: none; color: inherit;"><span>Python Master</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="lessons.html" class="nav-link">الدروس</a></li>
+                <li><a href="profile.html" class="nav-link">الملف الشخصي</a></li>
+                <li><a href="progress.html" class="nav-link active">التقدم</a></li>
+            </ul>
+            <div class="user-menu">
+                <span id="userName" class="user-name"></span>
+                <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="تبديل الوضع">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Section -->
+    <section id="progress" class="progress-section" style="margin-top: 80px; padding: 3rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">تتبع التقدم</h2>
+                <p class="section-subtitle">راجع إحصائياتك وتقدمك في التعلم</p>
+            </div>
+            <div class="progress-charts">
+                <div class="chart-card">
+                    <h3>التقدم حسب المستوى</h3>
+                    <div class="level-progress">
+                        <div class="level-item">
+                            <span>مبتدئ</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="0" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <div class="level-item">
+                            <span>متوسط</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="0" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <div class="level-item">
+                            <span>متقدم</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="0" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>نظرة عامة</h3>
+                    <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 2rem;">
+                        <div class="stat-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <span class="stat-value" id="completedLessons">0</span>
+                                <span class="stat-label">درس مكتمل</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-fire"></i>
+                            <div>
+                                <span class="stat-value" id="streakDays">0</span>
+                                <span class="stat-label">يوم متتالي</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <span class="stat-value" id="totalPoints">0</span>
+                                <span class="stat-label">نقطة</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-trophy"></i>
+                            <div>
+                                <span class="stat-value" id="totalAchievements">0</span>
+                                <span class="stat-label">إنجاز</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-card" style="margin-top: 2rem;">
+                <h3>الدروس المكتملة</h3>
+                <div id="completedLessonsList" class="completed-lessons-list">
+                    <!-- Completed lessons will be shown here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fab fa-python"></i> Python Master</h3>
+                    <p>منصة تعليمية شاملة لتعلم لغة البرمجة بايثون من الصفر إلى الاحتراف</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="profile.html">الملف الشخصي</a></li>
+                        <li><a href="progress.html">التقدم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="https://x.com/Gfx208" target="_blank" rel="noopener noreferrer" title="Twitter/X">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/q0if0/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/Mustafa624" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UC3cXv1StzKNXWfHHCwFe64Q" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 . جميع الحقوق محفوظة.مصطفى داود</p>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">
+                    الفيديوهات التعليمية مملوكة لأصحابها الأصليين. نستخدم YouTube Embedding بموجب شروط YouTube.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('userName').textContent = `مرحباً، ${currentUser.name || currentUser.username}`;
+            
+            // Load progress first - this sets the global userProgress variable
+            loadProgress();
+            
+            // Function to update all stats directly from localStorage
+            function updateProgressPageStats() {
+                // Get fresh data from localStorage
+                const savedProgress = JSON.parse(localStorage.getItem('pythonMasterProgress')) || {
+                    completedLessons: [],
+                    achievements: [],
+                    streakDays: 0,
+                    totalPoints: 0,
+                    levelProgress: { beginner: 0, intermediate: 0, advanced: 0 }
+                };
+                
+                // Update stats in progress page
+                const completedLessonsEl = document.getElementById('completedLessons');
+                const streakDaysEl = document.getElementById('streakDays');
+                const totalPointsEl = document.getElementById('totalPoints');
+                const totalAchievementsEl = document.getElementById('totalAchievements');
+                
+                if (completedLessonsEl) {
+                    completedLessonsEl.textContent = savedProgress.completedLessons ? savedProgress.completedLessons.length : 0;
+                }
+                if (streakDaysEl) {
+                    streakDaysEl.textContent = savedProgress.streakDays || 0;
+                }
+                if (totalPointsEl) {
+                    totalPointsEl.textContent = savedProgress.totalPoints || 0;
+                }
+                if (totalAchievementsEl) {
+                    totalAchievementsEl.textContent = savedProgress.achievements ? savedProgress.achievements.length : 0;
+                }
+            }
+            
+            // Update stats immediately
+            updateProgressPageStats();
+            
+            // Update UI with loaded progress (this uses global userProgress)
+            updateUI();
+            updateLevelProgress();
+            renderCompletedLessons();
+            
+            // Update profile stats
+            updateProfileStats();
+            
+            // Re-update stats after a short delay to ensure everything is loaded
+            setTimeout(updateProgressPageStats, 200);
+
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            }
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-theme');
+                const isLight = document.body.classList.contains('light-theme');
+                const icon = this.querySelector('i');
+                if (isLight) {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Mobile menu
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+
+        function renderCompletedLessons() {
+            const list = document.getElementById('completedLessonsList');
+            if (!list) return;
+            
+            const userProgress = JSON.parse(localStorage.getItem('pythonMasterProgress')) || { completedLessons: [] };
+            const completed = lessons.filter(l => userProgress.completedLessons.includes(l.id));
+            
+            if (completed.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">لم تكمل أي دروس بعد</p>';
+                return;
+            }
+            
+            list.innerHTML = completed.map(lesson => `
+                <div class="completed-lesson-item" style="background: var(--card-bg); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; border: 2px solid var(--primary-color);">
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem;">${lesson.title}</h4>
+                        <span class="lesson-badge badge-${lesson.level}">${getLevelName(lesson.level)}</span>
+                    </div>
+                    <button class="btn-secondary" onclick="window.location.href='lessons.html'; setTimeout(() => openLesson(${lesson.id}), 100);">
+                        مراجعة
+                    </button>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
