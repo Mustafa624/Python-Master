@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعلم بايثون - من الصفر إلى الاحتراف</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fab fa-python"></i>
+                <a href="index.html" style="text-decoration: none; color: inherit;"><span>Python Master</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">الرئيسية</a></li>
+                <li><a href="lessons.html" class="nav-link">الدروس</a></li>
+                <li><a href="profile.html" class="nav-link">الملف الشخصي</a></li>
+                <li><a href="progress.html" class="nav-link">التقدم</a></li>
+            </ul>
+            <div class="user-menu">
+                <span id="userName" class="user-name"></span>
+                <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن درس...">
+                    <i class="fas fa-search search-icon"></i>
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="تبديل الوضع">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="favorites-btn" id="favoritesBtn" title="المفضلة">
+                    <i class="fas fa-heart"></i>
+                    <span class="favorites-count" id="favoritesCount">0</span>
+                </button>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="code-animation"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">تعلم بايثون</span>
+                    <br>من الصفر إلى الاحتراف
+                </h1>
+                <p class="hero-subtitle">رحلة تعليمية شاملة تغطي كل شيء في لغة البرمجة بايثون</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-book"></i>
+                        <span class="stat-number" id="totalLessonsCount" data-target="0">0</span>
+                        <span class="stat-label">درس</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-video"></i>
+                        <span class="stat-number" id="totalVideosCount" data-target="0">0</span>
+                        <span class="stat-label">فيديو</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-trophy"></i>
+                        <span class="stat-number" id="totalAchievementsCount" data-target="0">0</span>
+                        <span class="stat-label">إنجاز</span>
+                    </div>
+                </div>
+                <a href="lessons.html" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+                    ابدأ التعلم الآن
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="lessons-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">مميزات المنصة</h2>
+                <p class="section-subtitle">اكتشف ما يجعل تعلم بايثون ممتعاً وفعالاً</p>
+            </div>
+            <div class="lessons-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="lesson-title">دروس شاملة</h3>
+                    <p class="lesson-description">أكثر من 12 درس يغطي جميع جوانب لغة بايثون من الأساسيات إلى المستوى المتقدم</p>
+                    <a href="lessons.html" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 1rem;">استكشف الدروس</a>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="lesson-title">نظام الإنجازات</h3>
+                    <p class="lesson-description">احصل على إنجازات رائعة أثناء التعلم وتابع تقدمك في لوحة الإنجازات</p>
+                    <a href="profile.html" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 1rem;">عرض الإنجازات</a>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="lesson-title">تتبع التقدم</h3>
+                    <p class="lesson-description">راجع إحصائياتك التفصيلية وتقدمك في التعلم حسب كل مستوى</p>
+                    <a href="progress.html" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 1rem;">عرض التقدم</a>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="lesson-title">شهادة إتمام</h3>
+                    <p class="lesson-description">احصل على شهادة معتمدة بعد إكمال 80% من الدروس لإثبات إتقانك لبايثون</p>
+                    <button class="btn-primary" onclick="checkAndShowCertificate()" style="margin-top: 1rem;">
+                        <i class="fas fa-download"></i> احصل على شهادتك
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content certificate-modal">
+            <span class="close-modal">&times;</span>
+            <div class="certificate-content">
+                <div class="certificate-header">
+                    <i class="fas fa-certificate"></i>
+                    <h2>شهادة إتمام</h2>
+                </div>
+                <div class="certificate-body">
+                    <p>هذه الشهادة تثبت أن</p>
+                    <h3 id="certificateName">المستخدم</h3>
+                    <p>قد أكمل بنجاح</p>
+                    <h4 id="certificateCourse">دورة تعلم بايثون الشاملة</h4>
+                    <div class="certificate-date">
+                        <span id="certificateDate"></span>
+                    </div>
+                </div>
+                <div class="certificate-footer">
+                    <button class="btn-primary" id="downloadCertificate">
+                        <i class="fas fa-download"></i> تحميل الشهادة
+                    </button>
+                    <button class="btn-secondary" id="shareCertificate">
+                        <i class="fas fa-share"></i> مشاركة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lesson Modal -->
+    <div id="lessonModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <div class="lesson-meta">
+                    <span id="modalLevel"></span>
+                    <span id="modalDuration"></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="lesson-tabs">
+                    <button class="tab-btn active" data-tab="content">المحتوى</button>
+                    <button class="tab-btn" data-tab="video">الفيديو</button>
+                    <button class="tab-btn" data-tab="code">التطبيق العملي</button>
+                    <button class="tab-btn" data-tab="quiz">التمرين</button>
+                </div>
+                <div class="lesson-actions-header">
+                    <div class="lesson-rating">
+                        <span>قيم هذا الدرس:</span>
+                        <div class="stars-rating" id="lessonRating">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    <button class="favorite-lesson-btn" id="favoriteLessonBtn">
+                        <i class="far fa-heart"></i>
+                        <span>أضف للمفضلة</span>
+                    </button>
+                </div>
+                <div class="tab-content active" id="contentTab">
+                    <div id="lessonContent"></div>
+                </div>
+                <div class="tab-content" id="videoTab">
+                    <div id="lessonVideo"></div>
+                </div>
+                <div class="tab-content" id="codeTab">
+                    <div class="code-editor-container">
+                        <div class="code-editor-header">
+                            <span>محرر الكود</span>
+                            <div class="code-actions">
+                                <button class="code-action-btn" id="clearCode" title="مسح الكود">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="code-action-btn" id="saveCode" title="حفظ الكود">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                                <button class="run-code-btn">
+                                    <i class="fas fa-play"></i> تشغيل
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="codeEditor" class="code-editor" placeholder="اكتب كودك هنا..."></textarea>
+                        <div class="code-output">
+                            <div class="output-header">النتيجة:</div>
+                            <pre id="codeOutput"></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="quizTab">
+                    <div id="quizContainer" class="quiz-container">
+                        <!-- Quiz will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="prevLesson">السابق</button>
+                <button class="btn-primary" id="completeLesson">إكمال الدرس</button>
+                <button class="btn-secondary" id="nextLesson">التالي</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fab fa-python"></i> Python Master</h3>
+                    <p>منصة تعليمية شاملة لتعلم لغة البرمجة بايثون من الصفر إلى الاحتراف</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="lessons.html">الدروس</a></li>
+                        <li><a href="profile.html">الملف الشخصي</a></li>
+                        <li><a href="progress.html">التقدم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="https://x.com/Gfx208" target="_blank" rel="noopener noreferrer" title="Twitter/X">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/q0if0/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/Mustafa624" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UC3cXv1StzKNXWfHHCwFe64Q" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 . جميع الحقوق محفوظة.مصطفى داود</p>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">
+                    الفيديوهات التعليمية مملوكة لأصحابها الأصليين. نستخدم YouTube Embedding بموجب شروط YouTube.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" title="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Favorites Modal -->
+    <div id="favoritesModal" class="modal">
+        <div class="modal-content favorites-modal">
+            <span class="close-modal">&times;</span>
+            <h2>دروسي المفضلة</h2>
+            <div id="favoritesList" class="favorites-list">
+                <!-- Favorites will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content certificate-modal">
+            <span class="close-modal">&times;</span>
+            <div class="certificate-content">
+                <div class="certificate-header">
+                    <i class="fas fa-certificate"></i>
+                    <h2>شهادة إتمام</h2>
+                </div>
+                <div class="certificate-body">
+                    <p>هذه الشهادة تثبت أن</p>
+                    <h3 id="certificateName">المستخدم</h3>
+                    <p>قد أكمل بنجاح</p>
+                    <h4 id="certificateCourse">دورة تعلم بايثون الشاملة من موقع Python Master</h4>
+                    <div class="certificate-date">
+                        <span id="certificateDate"></span>
+                    </div>
+                </div>
+                <div class="certificate-footer">
+                    <button class="btn-primary" id="downloadCertificate">
+                        <i class="fas fa-download"></i> تحميل الشهادة
+                    </button>
+                    <button class="btn-secondary" id="shareCertificate">
+                        <i class="fas fa-share"></i> مشاركة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pyodide for Python execution -->
+    <script>
+        // Set up Pyodide loading flag
+        window.pyodideScriptLoaded = false;
+    </script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js" 
+            onload="window.pyodideScriptLoaded = true; console.log('Pyodide script loaded');"
+            onerror="console.error('Failed to load Pyodide script');"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Check authentication and display user info
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) {
+                    userNameEl.textContent = `مرحباً، ${currentUser.name || currentUser.username}`;
+                }
+            } else {
+                // Redirect to login if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load progress and update hero stats
+            loadProgress();
+            
+            // Force update hero stats immediately
+            updateHeroStats();
+            
+            // Also update after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                updateHeroStats();
+                animateNumbers();
+            }, 300);
+            
+            // Setup certificate modal
+            const certificateModal = document.getElementById('certificateModal');
+            if (certificateModal) {
+                document.querySelector('#certificateModal .close-modal').addEventListener('click', () => {
+                    certificateModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+                document.getElementById('downloadCertificate')?.addEventListener('click', downloadCertificate);
+                document.getElementById('shareCertificate')?.addEventListener('click', shareCertificate);
+            }
+        });
+    </script>
+</body>
+</html>
